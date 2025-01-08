@@ -13,7 +13,18 @@ const handleAddTodo = () => {
             setHeadingInput('');      
         }
     }
+const handleAddList=(index)=>{
+    if(listInputs[index] && listInputs[index].trim() !==''){
+        const newTodos=[...todos];
+        newTodos[index].lists.push(listInputs[index]);
+        setTodos(newTodos);
+        setListInputs({...listInputs,[index]:''})
+    }
+}
 
+const handleAddListInputChange = (index,value)=>{
+    setListInputs({...listInputs,[index]: value})
+}
 
   return (
     <>
@@ -38,6 +49,14 @@ const handleAddTodo = () => {
                     <div className="heading_todo">
                         <h3>{todo.heading}</h3> {/* Display the heading here*/}
                         <button className="delete-button-heading" onClick={()=>handleDeleteTodo(index)}>Delete Heading</button>
+                        <ul>
+                            {todo.lists.map((list, listIndex) => (
+                                <li key={listIndex} className='todo_inside_list'>
+                                    <p>{list}</p>
+                                 </li>
+                        ))}
+                         </ul>
+                        
                         <div className='add_list'>
                            <input 
                                 type="text"
