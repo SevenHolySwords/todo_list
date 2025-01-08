@@ -26,6 +26,12 @@ const handleAddListInputChange = (index,value)=>{
     setListInputs({...listInputs,[index]: value})
 }
 
+const handleDeleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <div className="todo-container">
@@ -48,7 +54,7 @@ const handleAddListInputChange = (index,value)=>{
                 <div className="todo-card">
                     <div className="heading_todo">
                         <h3>{todo.heading}</h3> {/* Display the heading here*/}
-                        <button className="delete-button-heading" onClick={()=>handleDeleteTodo(index)}>Delete Heading</button>
+                        <button className="delete-button-heading" onClick={handleDeleteTodo}>Delete Heading</button>
                         <ul>
                             {todo.lists.map((list, listIndex) => (
                                 <li key={listIndex} className='todo_inside_list'>
