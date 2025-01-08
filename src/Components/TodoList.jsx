@@ -19,7 +19,16 @@ const TodoList = () => {
         </div>
       </div>
       <div className="todo_main">
-        
+        const [todos, setTodos] = useState([]);
+        const [headingInput, setHeadingInput]= useState('');
+        const [listInputs, setListInputs]= useState({})
+
+        const handleAddTodo = ()=>{
+            if (headingInput.trim( !== '')){
+                setTodos([...TodoList, {heading: headingInput, lists: []}]);
+                setHeadingInput('');
+            }
+        }
       </div>
     </>
   );
